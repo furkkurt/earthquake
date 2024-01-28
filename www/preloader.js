@@ -28,6 +28,11 @@ class preloader extends Phaser.Scene {
     this.load.image("plank", "assets/plank.png")
     this.load.image("glass", "assets/glassB.png")
     this.load.image("black", "assets/black.png")
+    this.load.image("yard", "assets/yard.jpg")
+    this.load.image("emptyYard", "assets/emptyYard.jpg")
+    this.load.image("menuBg", "assets/menuBg.jpg")
+    this.load.image("iconSchool", "assets/iconSchool.png")
+    this.load.image("left", "assets/left.png")
 
     this.load.atlas("character1", "assets/character1.png", "assets/character1.json");
 	};
@@ -95,6 +100,6 @@ class preloader extends Phaser.Scene {
       repeat: -1
     })
 
-		this.scene.start("school2");
+		this.scene.start("menu");
 	}
 }

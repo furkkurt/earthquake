@@ -56,12 +56,12 @@ class school2 extends Phaser.Scene{
       }
     })
 
-    let black = this.add.sprite(0, 0, "black").setOrigin(0).setDepth(999)
-    black.setScale(100)
+    this.black = this.add.sprite(0, 0, "black").setOrigin(0).setDepth(999)
+    this.black.setScale(100)
     this.time.addEvent({
       delay: 20,
       callback:() =>{
-        black.alpha -= .01
+        this.black.alpha -= .01
       }, repeat: 100
     })
 
@@ -78,7 +78,7 @@ class school2 extends Phaser.Scene{
     this.kid1.x -= 200 
     this.kid2.x -= 200 
     this.kid3.x -= 200 
-    this.teacher.x -= 200 
+    this.teacher.x -= 350 
     this.kid1.setDepth(99)
     this.kid2.setDepth(99)
     this.kid3.setDepth(99)
@@ -88,51 +88,45 @@ class school2 extends Phaser.Scene{
     this.time.addEvent({
       delay: 1000,
       callback:() =>{
-        this.physics.moveTo(this.kid1, 1200, this.kid1.y, 200)
-        this.physics.moveTo(this.kid2, 1200, this.kid1.y, 200)
-        this.physics.moveTo(this.kid3, 1200, this.kid1.y, 200)
-        this.physics.moveTo(this.teacher, 1200, this.kid1.y, 200)
+        this.physics.moveTo(this.kid1, 1200, this.kid1.y, 400)
+        this.physics.moveTo(this.kid2, 1200, this.kid1.y, 400)
+        this.physics.moveTo(this.kid3, 1200, this.kid1.y, 400)
+        this.physics.moveTo(this.teacher, this.outside.x, this.kid1.y-200, 400)
         this.kid1.play("kid1Run")
         this.kid2.play("kid2Run")
         this.kid3.play("kid3Run")
         this.teacher.play("teacherRun").setDepth(1.01)
+        this.fade();
         this.time.addEvent({
-          delay: 1000,
+          delay: 500,
           callback:() =>{
-            this.physics.moveTo(this.teacher, 1200, 0, 200)
+            this.physics.moveTo(this.teacher, 1200, 0, 500)
             this.time.addEvent({
-              delay: 750,
+              delay: 325,
               callback:() =>{
-                this.physics.moveTo(this.kid1, 1200, 0, 200)
+                this.physics.moveTo(this.kid1, 1200, 0, 500)
                 this.time.addEvent({
-                  delay: 1750,
+                  delay: 750,
                   callback:() =>{
-                    this.teacher.setVelocity(0)
-                    this.teacher.setVisible(false)
+                    this.physics.moveTo(this.kid2, 1200, 0, 500)
                     this.time.addEvent({
-                      delay: 500,
+                      delay: 1250,
                       callback:() =>{
-                        this.kid1.setVelocity(0)
-                        this.kid1.setVisible(false)
-                      }
-                    })
-                    this.physics.moveTo(this.kid2, 1200, 0, 200)
-                    this.time.addEvent({
-                      delay: 2500,
-                      callback:() =>{
-                        this.kid2.setVelocity(0)
-                        this.kid2.setVisible(false)
-                        this.physics.moveTo(this.kid3, 1200, 0, 200)
+                        this.physics.moveTo(this.kid3, 1200, 0, 400)
                         this.time.addEvent({
-                          delay: 2000,
+                          delay: 1000,
                           callback:() =>{
-                            this.kid3.setVelocity(0)
-                            this.kid3.setVisible(false)
                             this.time.addEvent({
-                              delay: 1000,
+                              delay: 20,
                               callback:() =>{
-                                this.scene.start("school3")
-                              }
+                                this.black.alpha += .01
+                                this.time.addEvent({
+                                  delay: 2000,
+                                  callback:() =>{
+                                    this.scene.start("school3")
+                                  }
+                                })
+                              }, repeat: 100
                             })
                           }
                         })
@@ -143,6 +137,53 @@ class school2 extends Phaser.Scene{
               }
             })
           }
+        })
+      }
+    })
+  }
+
+  fade() {
+    this.time.addEvent({
+      delay: 500,
+      callback:() =>{
+        this.time.addEvent({
+          delay: 20,
+          callback:() =>{
+            this.teacher.alpha -= .05
+          }, repeat: 20
+        })
+      }
+    })
+    this.time.addEvent({
+      delay: 1250,
+      callback:() =>{
+        this.time.addEvent({
+          delay: 20,
+          callback:() =>{
+            this.kid1.alpha -= .05
+          }, repeat: 20
+        })
+      }
+    })
+    this.time.addEvent({
+      delay: 2000,
+      callback:() =>{
+        this.time.addEvent({
+          delay: 20,
+          callback:() =>{
+            this.kid2.alpha -= .05
+          }, repeat: 20
+        })
+      }
+    })
+    this.time.addEvent({
+      delay: 3500,
+      callback:() =>{
+        this.time.addEvent({
+          delay: 20,
+          callback:() =>{
+            this.kid3.alpha -= .05
+          }, repeat: 20
         })
       }
     })

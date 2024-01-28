@@ -12,7 +12,7 @@ var config = {
       debug: false
     }
   },
-  scene: [preloader, menu, street, school, school2],
+  scene: [preloader, menu, street, school, school2, school3, school4],
 };
 
 var game = new Phaser.Game(config);
