@@ -12,6 +12,15 @@ var config = {
       debug: false
     }
   },
+  plugins: {
+    scene: [
+      {
+        key: 'SpinePlugin',
+        plugin: window.SpinePlugin,
+        sceneKey: 'spine'
+      }
+    ]
+  },
   scene: [preloader, menu, street, school, school2, school3, school4],
 };
 
