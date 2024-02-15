@@ -34,6 +34,6 @@ class preloader extends Phaser.Scene {
     this.load.spine("character", "skeleton.json", "skeleton.atlas", true)
 	};
 	create(){
-		this.scene.start("school2");
+		this.scene.start("menu");
 	}
 }
